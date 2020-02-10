@@ -8,19 +8,6 @@ var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
 
-// This takes away the military time
-if (hours > 12) {
-  hours -= 12;
-}
-
-if (min > 59) {
-  min /= 60;
-}
-
-if (min < 10) {
-  min = `0${min}`;
-}
-
 export default class Timer extends Component {
   state = {
     seconds: 0,
@@ -75,7 +62,6 @@ export default class Timer extends Component {
   };
 
   render() {
-    const { minutes, seconds } = this.state;
     return (
       <div className="page-container">
         <div className="animation-container">
