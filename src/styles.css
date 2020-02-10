@@ -1,0 +1,83 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: rgb(38, 38, 97);
+  margin: 0;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+}
+
+.page-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-countdown-clock {
+  margin-right: 200px;
+  margin-top: 42px;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container > button {
+  outline: none;
+  background-color: #ff9f1c;
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 15px;
+}
+
+.control-panel {
+  display: flex;
+  margin-top: 42px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.pause {
+  outline: none;
+  background-color: gray;
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 15px;
+  height: 86px;
+}
+
+.resume {
+  outline: none;
+  background-color: rgb(4, 196, 4);
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 15px;
+}
+
+.reset {
+  outline: none;
+  background-color: red;
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 15px;
+}
