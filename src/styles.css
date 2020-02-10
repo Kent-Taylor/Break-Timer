@@ -48,6 +48,19 @@ body {
   flex-direction: column;
 }
 
+.start {
+  outline: none;
+  background-color: #2ec4b6;
+  border: 2px solid #29aa9d;
+  border-radius: 0%;
+  margin: 10px;
+  color: white;
+  font-size: 1.2em;
+  padding: 5px 15px;
+  height: 55px;
+  width: 167px;
+}
+
 .pause {
   outline: none;
   background-color: gray;
@@ -62,7 +75,7 @@ body {
 
 .resume {
   outline: none;
-  background-color: rgb(4, 196, 4);
+  background-color: #7fb7be;
   border: none;
   border-radius: 30px;
   margin: 10px;
@@ -73,7 +86,7 @@ body {
 
 .reset {
   outline: none;
-  background-color: red;
+  background-color: #bc2c1a;
   border: none;
   border-radius: 30px;
   margin: 10px;

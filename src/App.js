@@ -6,11 +6,9 @@ import "./styles.css";
 export default function App() {
   return (
     <div className="App">
-      <body>
-        <div className="page-container">
-          <Timer />
-        </div>
-      </body>
+      <div className="container">
+        <Timer />
+      </div>
     </div>
   );
 }

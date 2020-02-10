@@ -7,6 +7,20 @@ var year = new Date().getFullYear(); //Current Year
 var hours = new Date().getHours(); //Current Hours
 var min = new Date().getMinutes(); //Current Minutes
 var sec = new Date().getSeconds(); //Current Seconds
+
+// This takes away the military time
+if (hours > 12) {
+  hours -= 12;
+}
+
+if (min > 59) {
+  min /= 60;
+}
+
+if (min < 10) {
+  min = `0${min}`;
+}
+
 export default class Timer extends Component {
   state = {
     seconds: 0,
@@ -26,16 +40,14 @@ export default class Timer extends Component {
   changeTimeHour = () => {
     this.setState({
       date: hours + 1 + ":" + min,
-      seconds: 3600,
-      pause: false
+      seconds: 3600
     });
   };
 
   changeTimeMinute = () => {
     this.setState({
       date: hours + ":" + (min + 15),
-      seconds: 900,
-      pause: false
+      seconds: 900
     });
   };
 
@@ -77,11 +89,9 @@ export default class Timer extends Component {
             onComplete={this.breakOver}
           />
         </div>
-        {minutes === 0 && seconds === 0 ? (
-          <h1>Busted!</h1>
-        ) : (
-          <p>Be back at: {`${this.state.date}`}</p>
-        )}
+
+        <p>Be back at: {`${this.state.date}`}</p>
+
         <div className="button-container">
           <button type="submit" onClick={this.changeTimeHour}>
             1 Hour
@@ -90,6 +100,9 @@ export default class Timer extends Component {
             15 min
           </button>
         </div>
+        <button className="start" type="submit" onClick={this.UnpauseIt}>
+          start
+        </button>
         <div className="control-panel">
           <button className="pause" type="submit" onClick={this.pauseIt}>
             ||
