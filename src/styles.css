@@ -6,7 +6,12 @@
   height: 100vh;
 }
 
+html {
+  background-color: rgb(38, 38, 97);
+}
+
 body {
+  background-color: rgb(38, 38, 97);
   margin: 0;
 }
 
@@ -27,12 +32,14 @@ body {
   border-radius: 15px;
   font-weight: 600;
   font-size: 24px;
+  margin: 10px;
 }
 
 .break-over {
   color: red;
   font-weight: 600;
   font-size: 24px;
+  margin: 10px;
 }
 
 .button-container {
