@@ -15,6 +15,7 @@ body {
   margin: 0;
 }
 
+/* @media (max-width: 785px) { */
 .page-container {
   color: white;
   display: flex;
@@ -75,10 +76,13 @@ button:active {
   color: white;
   font-size: 1.2em;
   padding: 5px 15px;
+  height: 50px;
+  width: 130px;
 }
 
 .control-panel {
   display: flex;
+  justify-content: center;
   margin-top: 42px;
 }
 
@@ -109,7 +113,8 @@ button:active {
   color: white;
   font-size: 1.2em;
   padding: 5px 15px;
-  height: 86px;
+  height: 120px;
+  width: 50px;
 }
 
 .resume {
@@ -121,6 +126,7 @@ button:active {
   color: white;
   font-size: 1.2em;
   padding: 5px 15px;
+  height: 50px;
 }
 
 .reset {
@@ -132,4 +138,7 @@ button:active {
   color: white;
   font-size: 1.2em;
   padding: 5px 15px;
+  width: 130px;
+  height: 50px;
 }
+/* } */

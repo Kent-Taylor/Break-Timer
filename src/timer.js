@@ -40,7 +40,7 @@ export default class Timer extends Component {
   changeTimeMinute = () => {
     this.setState({
       state: this.state,
-      seconds: 12,
+      seconds: 900,
       time: `Be back at ${inFifteen.format("h:mm A")}`,
       break: "",
       pauseTxt: "",
@@ -67,7 +67,8 @@ export default class Timer extends Component {
       pause: true,
       time: "",
       break: "",
-      pauseTxt: ""
+      pauseTxt: "",
+      selection: ""
     });
   };
 
@@ -108,34 +109,38 @@ export default class Timer extends Component {
             pausedText={this.state.pauseTxt}
           />
         </div>
-        <p className="selection">{this.state.selection}</p>
-        <p className="be-back">{this.state.time}</p>
-        <p className="break-over">{this.state.break}</p>
-        <div className="button-container">
-          <button type="submit" onClick={this.changeTimeHour}>
-            1 Hour
-          </button>
-          <button type="submit" onClick={this.changeTimeMinute}>
-            15 min
-          </button>
-        </div>
-        <button className="start" type="submit" onClick={this.UnpauseIt}>
-          start
-        </button>
-        <div className="control-panel">
-          <button className="pause" type="submit" onClick={this.pauseIt}>
-            ||
-          </button>
-          <div className="controls">
-            <button className="resume" type="submit" onClick={this.UnpauseIt}>
-              Resume
+        <div className="all-buttons">
+          <div className="top-buttons">
+            <p className="selection">{this.state.selection}</p>
+            <p className="be-back">{this.state.time}</p>
+            <p className="break-over">{this.state.break}</p>
+            <div className="button-container">
+              <button type="submit" onClick={this.changeTimeHour}>
+                1 Hour
+              </button>
+              <button type="submit" onClick={this.changeTimeMinute}>
+                15 min
+              </button>
+            </div>
+            <button className="start" type="submit" onClick={this.UnpauseIt}>
+              start
             </button>
-            <button className="reset" type="submit" onClick={this.reset}>
-              Reset
+          </div>
+          <div className="control-panel">
+            <button className="pause" type="submit" onClick={this.pauseIt}>
+              ||
             </button>
-            <audio className="audio-element">
-              <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3" />
-            </audio>
+            <div className="controls">
+              <button className="resume" type="submit" onClick={this.UnpauseIt}>
+                Resume
+              </button>
+              <button className="reset" type="submit" onClick={this.reset}>
+                Reset
+              </button>
+              <audio className="audio-element">
+                <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3" />
+              </audio>
+            </div>
           </div>
         </div>
       </div>
