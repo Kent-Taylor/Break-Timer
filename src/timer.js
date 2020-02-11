@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import ReactCountdownClock from "react-countdown-clock";
+import Sound from "react-sound";
+import moment from "moment";
 
-var date = new Date().getDate(); //Current Date
-var month = new Date().getMonth() + 1; //Current Month
-var year = new Date().getFullYear(); //Current Year
-var hours = new Date().getHours(); //Current Hours
-var min = new Date().getMinutes(); //Current Minutes
-var sec = new Date().getSeconds(); //Current Seconds
+var inAnHour = moment().add(1, "hours");
+var inFifteen = moment().add(15, "minutes");
+var currentTime = moment().format("h:mm");
 
 export default class Timer extends Component {
   state = {
     seconds: 0,
-    pause: true
+    pause: true,
+    time: "",
+    currentTime: `${currentTime}`,
+    break: ""
   };
-  componentDidMount() {
-    this.setState({
-      //Setting the value of the date time
-      date: hours + ":" + min
-    });
-  }
 
   componentWillUnmount() {
     clearInterval(this.myInterval);
@@ -26,15 +22,19 @@ export default class Timer extends Component {
 
   changeTimeHour = () => {
     this.setState({
-      date: hours + 1 + ":" + min,
-      seconds: 3600
+      state: this.state,
+      seconds: 3600,
+      time: `Be back at ${inAnHour.format("h:mm")}`,
+      break: ""
     });
   };
 
   changeTimeMinute = () => {
     this.setState({
-      date: hours + ":" + (min + 15),
-      seconds: 900
+      state: this.state,
+      seconds: 5,
+      time: `Be back at ${inFifteen.format("h:mm")}`,
+      break: ""
     });
   };
 
@@ -53,12 +53,27 @@ export default class Timer extends Component {
   reset = () => {
     this.setState({
       seconds: 0,
-      pause: true
+      pause: true,
+      time: "",
+      break: ""
     });
   };
 
   breakOver = () => {
-    alert("Break's over!");
+    this.setState({
+      time: "",
+      break: "Break's Over!"
+    });
+    return (
+      <Sound
+        url="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"
+        playStatus={Sound.status.PLAYING}
+        playFromPosition={300 /* in milliseconds */}
+        onLoading={this.play}
+        onPlaying={this.handleSongPlaying}
+        onFinishedPlaying={this.handleSongFinishedPlaying}
+      />
+    );
   };
 
   render() {
@@ -75,9 +90,8 @@ export default class Timer extends Component {
             onComplete={this.breakOver}
           />
         </div>
-
-        <p>Be back at: {`${this.state.date}`}</p>
-
+        <p className="be-back">{this.state.time}</p>
+        <p className="break-over">{this.state.break}</p>
         <div className="button-container">
           <button type="submit" onClick={this.changeTimeHour}>
             1 Hour

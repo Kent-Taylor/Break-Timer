@@ -5,11 +5,14 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "moment": "2.24.0",
     "react": "16.12.0",
     "react-countdown-clock": "2.7.0",
     "react-dom": "16.12.0",
+    "react-live-clock": "4.0.3",
     "react-moment": "0.9.7",
     "react-scripts": "3.0.1",
+    "react-sound": "1.2.0",
     "timer": "1.0.1"
   },
   "devDependencies": {
