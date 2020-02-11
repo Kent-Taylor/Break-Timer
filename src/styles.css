@@ -28,7 +28,14 @@ body {
   margin-top: 42px;
 }
 
+.selection {
+  color: #ff9f1c;
+  margin: 6px;
+  font-size: 24px;
+}
+
 .be-back {
+  color: #2ec4b6;
   border-radius: 15px;
   font-weight: 600;
   font-size: 24px;
@@ -48,6 +55,15 @@ body {
 
 button {
   cursor: pointer;
+  transition: ease-in-out 0.2s;
+}
+
+button:hover {
+  filter: brightness(50%);
+}
+
+button:active {
+  filter: brightness(50%);
 }
 
 .button-container > button {

@@ -9,11 +9,13 @@ var currentTime = moment().format("h:mm");
 
 export default class Timer extends Component {
   state = {
-    seconds: 0,
+    seconds: "",
     pause: true,
+    pauseTxt: "",
     time: "",
     currentTime: `${currentTime}`,
-    break: ""
+    break: "",
+    selection: ""
   };
 
   componentWillUnmount() {
@@ -24,23 +26,32 @@ export default class Timer extends Component {
     this.setState({
       state: this.state,
       seconds: 3600,
-      time: `Be back at ${inAnHour.format("h:mm")}`,
-      break: ""
+      time: `Be back at ${inAnHour.format("h:mm A")}`,
+      break: "",
+      pauseTxt: "",
+      selection: "1 hour"
     });
+  };
+
+  sleep = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
   };
 
   changeTimeMinute = () => {
     this.setState({
       state: this.state,
-      seconds: 900,
-      time: `Be back at ${inFifteen.format("h:mm")}`,
-      break: ""
+      seconds: 12,
+      time: `Be back at ${inFifteen.format("h:mm A")}`,
+      break: "",
+      pauseTxt: "",
+      selection: "15 minutes"
     });
   };
 
   pauseIt = () => {
     this.setState({
-      pause: true
+      pause: true,
+      pauseTxt: "||"
     });
   };
 
@@ -55,7 +66,8 @@ export default class Timer extends Component {
       seconds: 0,
       pause: true,
       time: "",
-      break: ""
+      break: "",
+      pauseTxt: ""
     });
   };
 
@@ -64,7 +76,8 @@ export default class Timer extends Component {
     audioEl.play();
     this.setState({
       time: "",
-      break: "Break's Over!"
+      break: "Break's Over!",
+      selection: ""
     });
 
     return (
@@ -91,8 +104,11 @@ export default class Timer extends Component {
             weight={10}
             paused={this.state.pause}
             onComplete={this.breakOver}
+            showMilliseconds={false}
+            pausedText={this.state.pauseTxt}
           />
         </div>
+        <p className="selection">{this.state.selection}</p>
         <p className="be-back">{this.state.time}</p>
         <p className="break-over">{this.state.break}</p>
         <div className="button-container">
