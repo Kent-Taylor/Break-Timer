@@ -60,10 +60,13 @@ export default class Timer extends Component {
   };
 
   breakOver = () => {
+    const audioEl = document.getElementsByClassName("audio-element")[0];
+    audioEl.play();
     this.setState({
       time: "",
       break: "Break's Over!"
     });
+
     return (
       <Sound
         url="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"
@@ -114,6 +117,9 @@ export default class Timer extends Component {
             <button className="reset" type="submit" onClick={this.reset}>
               Reset
             </button>
+            <audio className="audio-element">
+              <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3" />
+            </audio>
           </div>
         </div>
       </div>
