@@ -32,7 +32,7 @@ export default class Timer extends Component {
   changeTimeMinute = () => {
     this.setState({
       state: this.state,
-      seconds: 5,
+      seconds: 900,
       time: `Be back at ${inFifteen.format("h:mm")}`,
       break: ""
     });
