@@ -4,6 +4,8 @@
   background-color: rgb(38, 38, 97);
   margin: 0;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 html {

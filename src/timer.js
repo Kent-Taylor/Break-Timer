@@ -5,7 +5,12 @@ import moment from "moment";
 
 var inAnHour = moment().add(1, "hours");
 var inFifteen = moment().add(15, "minutes");
-var currentTime = moment().format("h:mm");
+var currentTime = moment().format("LTS");
+
+// function update() {
+//   let stuff = "#clock".html(moment().format("D. MMMM YYYY H:mm:ss"));
+//   return stuff;
+// }
 
 export default class Timer extends Component {
   state = {
@@ -31,10 +36,6 @@ export default class Timer extends Component {
       pauseTxt: "",
       selection: "1 hour"
     });
-  };
-
-  sleep = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms));
   };
 
   changeTimeMinute = () => {
@@ -125,6 +126,7 @@ export default class Timer extends Component {
             <button className="start" type="submit" onClick={this.UnpauseIt}>
               start
             </button>
+            {/* {moment().format("LTS")} */}
           </div>
           <div className="control-panel">
             <button className="pause" type="submit" onClick={this.pauseIt}>
