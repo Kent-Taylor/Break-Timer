@@ -14,7 +14,7 @@ export default class Timer extends Component {
     time: "Current Time",
     backAt: "",
     break: "",
-    selection: ""
+    selection: "Select Time"
   };
 
   componentDidMount() {
@@ -66,14 +66,7 @@ export default class Timer extends Component {
   };
 
   reset = () => {
-    this.setState({
-      seconds: 0,
-      pause: true,
-      time: "",
-      break: "",
-      pauseTxt: "",
-      selection: ""
-    });
+    window.location.reload();
   };
 
   breakOver = () => {
