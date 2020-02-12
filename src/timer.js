@@ -5,16 +5,14 @@ import moment from "moment";
 
 var inAnHour = moment().add(1, "hours");
 var inFifteen = moment().add(15, "minutes");
-var currentTime = moment().format("LTS");
 
 export default class Timer extends Component {
   state = {
     seconds: 0,
     pause: true,
     pauseTxt: "",
-    time: "",
+    time: "Current Time",
     backAt: "",
-    currentTime: `${currentTime}`,
     break: "",
     selection: ""
   };
@@ -25,6 +23,7 @@ export default class Timer extends Component {
   componentWillUnmount() {
     clearInterval(this.intervalID);
   }
+
   tick() {
     this.setState({
       time: new moment().format("LTS")
@@ -33,22 +32,22 @@ export default class Timer extends Component {
 
   changeTimeHour = () => {
     this.setState({
-      state: this.state,
       seconds: 3600,
+      pause: true,
       backAt: `Be back at ${inAnHour.format("h:mm A")}`,
       break: "",
-      pauseTxt: "",
+      pauseTxt: "Press Start",
       selection: "1 hour"
     });
   };
 
   changeTimeMinute = () => {
     this.setState({
-      state: this.state,
       seconds: 900,
       backAt: `Be back at ${inFifteen.format("h:mm A")}`,
+      pause: true,
       break: "",
-      pauseTxt: "",
+      pauseTxt: "Press Start",
       selection: "15 minutes"
     });
   };
@@ -111,8 +110,8 @@ export default class Timer extends Component {
             weight={10}
             paused={this.state.pause}
             onComplete={this.breakOver}
-            showMilliseconds={false}
             pausedText={this.state.pauseTxt}
+            showMilliseconds={false}
           />
         </div>
         <div className="all-buttons">
