@@ -7,31 +7,35 @@ var inAnHour = moment().add(1, "hours");
 var inFifteen = moment().add(15, "minutes");
 var currentTime = moment().format("LTS");
 
-// function update() {
-//   let stuff = "#clock".html(moment().format("D. MMMM YYYY H:mm:ss"));
-//   return stuff;
-// }
-
 export default class Timer extends Component {
   state = {
-    seconds: "",
+    seconds: 0,
     pause: true,
     pauseTxt: "",
     time: "",
+    backAt: "",
     currentTime: `${currentTime}`,
     break: "",
     selection: ""
   };
 
+  componentDidMount() {
+    this.intervalID = setInterval(() => this.tick(), 1000);
+  }
   componentWillUnmount() {
-    clearInterval(this.myInterval);
+    clearInterval(this.intervalID);
+  }
+  tick() {
+    this.setState({
+      time: new moment().format("LTS")
+    });
   }
 
   changeTimeHour = () => {
     this.setState({
       state: this.state,
       seconds: 3600,
-      time: `Be back at ${inAnHour.format("h:mm A")}`,
+      backAt: `Be back at ${inAnHour.format("h:mm A")}`,
       break: "",
       pauseTxt: "",
       selection: "1 hour"
@@ -42,7 +46,7 @@ export default class Timer extends Component {
     this.setState({
       state: this.state,
       seconds: 900,
-      time: `Be back at ${inFifteen.format("h:mm A")}`,
+      backAt: `Be back at ${inFifteen.format("h:mm A")}`,
       break: "",
       pauseTxt: "",
       selection: "15 minutes"
@@ -97,6 +101,7 @@ export default class Timer extends Component {
   render() {
     return (
       <div className="page-container">
+        <p className="current-time">{this.state.time}</p>
         <div className="animation-container">
           <ReactCountdownClock
             seconds={this.state.seconds}
@@ -113,7 +118,7 @@ export default class Timer extends Component {
         <div className="all-buttons">
           <div className="top-buttons">
             <p className="selection">{this.state.selection}</p>
-            <p className="be-back">{this.state.time}</p>
+            <p className="be-back">{this.state.backAt}</p>
             <p className="break-over">{this.state.break}</p>
             <div className="button-container">
               <button type="submit" onClick={this.changeTimeHour}>
