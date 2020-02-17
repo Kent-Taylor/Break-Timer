@@ -6,6 +6,8 @@ import moment from "moment";
 var inAnHour = moment().add(1, "hours");
 var inFifteen = moment().add(15, "minutes");
 
+// https://rails.devcamp.com/12/guide/1535 this will fix my Be back at bug
+
 export default class Timer extends Component {
   state = {
     seconds: 0,
@@ -19,6 +21,26 @@ export default class Timer extends Component {
 
   componentDidMount() {
     this.intervalID = setInterval(() => this.tick(), 1000);
+    const dateElement = document.getElementById("dateComponent");
+    const dateBtn = document.getElementById("dateBtn");
+    const dateBtn2 = document.getElementById("dateBtn2");
+
+    if (dateBtn) {
+      dateBtn.addEventListener("click", event => {
+        dateElement.innerHTML = `Be back at ${moment()
+          .add(15, "minutes")
+          .format("LTS")}`;
+        this.changeTimeMinute();
+      });
+    }
+    if (dateBtn2) {
+      dateBtn2.addEventListener("click", event => {
+        dateElement.innerHTML = `Be back at ${moment()
+          .add(1, "hours")
+          .format("LTS")}`;
+        this.changeTimeHour();
+      });
+    }
   }
   componentWillUnmount() {
     clearInterval(this.intervalID);
@@ -32,8 +54,7 @@ export default class Timer extends Component {
 
   changeTimeHour = () => {
     this.setState({
-      seconds: 3600,
-      pause: true,
+      seconds: 3600 + 1,
       backAt: `Be back at ${inAnHour.format("h:mm A")}`,
       break: "",
       pauseTxt: "Press Start",
@@ -43,9 +64,7 @@ export default class Timer extends Component {
 
   changeTimeMinute = () => {
     this.setState({
-      seconds: 900,
-      backAt: `Be back at ${inFifteen.format("h:mm A")}`,
-      pause: true,
+      seconds: 900 + 1,
       break: "",
       pauseTxt: "Press Start",
       selection: "15 minutes"
@@ -59,7 +78,7 @@ export default class Timer extends Component {
     });
   };
 
-  UnpauseIt = () => {
+  unpauseIt = () => {
     this.setState({
       pause: false
     });
@@ -77,6 +96,7 @@ export default class Timer extends Component {
       break: "Break's Over!",
       selection: ""
     });
+    console.log("sound played");
 
     return (
       <Sound
@@ -110,27 +130,23 @@ export default class Timer extends Component {
         <div className="all-buttons">
           <div className="top-buttons">
             <p className="selection">{this.state.selection}</p>
-            <p className="be-back">{this.state.backAt}</p>
+            <div id="dateComponent" className="be-back" />
             <p className="break-over">{this.state.break}</p>
             <div className="button-container">
-              <button type="submit" onClick={this.changeTimeHour}>
-                1 Hour
-              </button>
-              <button type="submit" onClick={this.changeTimeMinute}>
-                15 min
-              </button>
+              <button id="dateBtn2">1 hour</button>
+
+              <button id="dateBtn">15 min</button>
             </div>
-            <button className="start" type="submit" onClick={this.UnpauseIt}>
+            <button className="start" type="submit" onClick={this.unpauseIt}>
               start
             </button>
-            {/* {moment().format("LTS")} */}
           </div>
           <div className="control-panel">
             <button className="pause" type="submit" onClick={this.pauseIt}>
               ||
             </button>
             <div className="controls">
-              <button className="resume" type="submit" onClick={this.UnpauseIt}>
+              <button className="resume" type="submit" onClick={this.unpauseIt}>
                 Resume
               </button>
               <button className="reset" type="submit" onClick={this.reset}>

@@ -1,7 +1,7 @@
 .App {
   font-family: sans-serif;
   text-align: center;
-  background-color: rgb(38, 38, 97);
+  background-color: rgb(27, 27, 68);
   margin: 0;
   height: 100vh;
   overflow-x: hidden;
@@ -9,11 +9,11 @@
 }
 
 html {
-  background-color: rgb(38, 38, 97);
+  background-color: rgb(27, 27, 68);
 }
 
 body {
-  background-color: rgb(38, 38, 97);
+  background-color: rgb(27, 27, 68);
   margin: 0;
 }
 
