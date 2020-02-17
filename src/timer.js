@@ -30,7 +30,11 @@ export default class Timer extends Component {
         dateElement.innerHTML = `Be back at ${moment()
           .add(15, "minutes")
           .format("LTS")}`;
+        this.clearCircle();
         this.changeTimeMinute();
+        this.setState({
+          pause: false
+        });
       });
     }
     if (dateBtn2) {
@@ -38,7 +42,11 @@ export default class Timer extends Component {
         dateElement.innerHTML = `Be back at ${moment()
           .add(1, "hours")
           .format("LTS")}`;
+        this.clearCircle();
         this.changeTimeHour();
+        this.setState({
+          pause: false
+        });
       });
     }
   }
@@ -57,7 +65,7 @@ export default class Timer extends Component {
       seconds: 3600 + 1,
       backAt: `Be back at ${inAnHour.format("h:mm A")}`,
       break: "",
-      pauseTxt: "Press Start",
+      pauseTxt: "Starting",
       selection: "1 hour"
     });
   };
@@ -66,7 +74,7 @@ export default class Timer extends Component {
     this.setState({
       seconds: 900 + 1,
       break: "",
-      pauseTxt: "Press Start",
+      pauseTxt: "Starting",
       selection: "15 minutes"
     });
   };
@@ -84,6 +92,18 @@ export default class Timer extends Component {
     });
   };
 
+  clearCircle = () => {
+    this.setState({
+      pauseTxt: ""
+    });
+  };
+
+  reloader = () => {
+    setTimeout(function() {
+      window.location.reload(true);
+    }, 5000);
+  };
+
   reset = () => {
     window.location.reload();
   };
@@ -97,6 +117,7 @@ export default class Timer extends Component {
       selection: ""
     });
     console.log("sound played");
+    this.reloader();
 
     return (
       <Sound
@@ -137,9 +158,6 @@ export default class Timer extends Component {
 
               <button id="dateBtn">15 min</button>
             </div>
-            <button className="start" type="submit" onClick={this.unpauseIt}>
-              start
-            </button>
           </div>
           <div className="control-panel">
             <button className="pause" type="submit" onClick={this.pauseIt}>
