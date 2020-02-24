@@ -144,3 +144,11 @@ select {
   width: 130px;
   height: 50px;
 }
+
+/* footer */
+
+.footer-container {
+  color: gray;
+  font-size: 12px;
+  margin: 42px;
+}
