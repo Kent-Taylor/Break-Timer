@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import ReactCountdownClock from "react-countdown-clock";
 import moment from "moment";
+import Whistle from "./sounds/Aztec-Death-Whistle.wav";
 // ==== 1.0
 
 // ==== 2.0
@@ -125,7 +126,7 @@ export default class Timer extends Component {
   changeFifteenMinute = () => {
     this.setState({
       // google how many seconds are in 15 mintes.
-      seconds: 900 + 1,
+      seconds: 5 + 1,
       // set break to blank since break is not over.
       break: "",
       // set to starting for while the timer is loading
@@ -198,6 +199,8 @@ export default class Timer extends Component {
     // select the element by the class name audio-element
     // grab the first element of it which is [0]
     const sound = document.getElementsByClassName("audio-element")[0];
+    // set the volume out of 1.0
+    sound.volume = 0.5;
     // then use the play function for sound.
     sound.play();
 
@@ -321,7 +324,7 @@ export default class Timer extends Component {
               {/* Now we can set our audio for when the timer hits onComplete. */}
               {/* it doesn't matter too much where you put this audio because you can't see it */}
               <audio className="audio-element">
-                <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3" />
+                <source src={Whistle} />
               </audio>
               {/* 10.0 */}
             </div>
