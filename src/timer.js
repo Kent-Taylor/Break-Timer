@@ -126,7 +126,7 @@ export default class Timer extends Component {
   changeFifteenMinute = () => {
     this.setState({
       // google how many seconds are in 15 mintes.
-      seconds: 5 + 1,
+      seconds: 900 + 1,
       // set break to blank since break is not over.
       break: "",
       // set to starting for while the timer is loading
