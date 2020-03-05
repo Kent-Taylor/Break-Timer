@@ -89,11 +89,13 @@ button:active {
 }
 
 select {
-  background-color: dodgerblue;
+  background-color: #5f4441;
   border: none;
-  font-size: 2em;
+  font-size: 1.3em;
   color: white;
   text-decoration: none;
+  outline: none;
+  margin: 10px;
 }
 
 .control-panel {

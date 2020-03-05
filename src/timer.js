@@ -4,35 +4,43 @@ import React, { Component } from "react";
 import ReactCountdownClock from "react-countdown-clock";
 import moment from "moment";
 import Whistle from "./sounds/Aztec-Death-Whistle.wav";
+import Train from "./sounds/train-crossing.mp3";
 // ==== 1.0
 
 // ==== 2.0
 // create a class and export it
+
 export default class Timer extends Component {
-  state = {
-    // ==== 6.2
-    // set it to 0 to start
-    seconds: 0,
-    // ==== 6.2
+  constructor(props) {
+    super(props);
+    this.state = {
+      // ==== 6.2
+      // set it to 0 to start
+      seconds: 0,
+      // ==== 6.2
 
-    // ==== 6.4
-    pause: true,
-    // ==== 6.4
+      // ==== 6.4
+      pause: true,
+      // ==== 6.4
 
-    // ==== 6.6
-    pauseTxt: "",
-    // ==== 6.6
+      // ==== 6.6
+      pauseTxt: "",
+      // ==== 6.6
 
-    // ==== 4.1
-    // this will render while the clock is loading
-    time: "Current Time",
-    // ==== 4.1
+      // ==== 4.1
+      // this will render while the clock is loading
+      time: "Current Time",
+      // ==== 4.1
 
-    break: "",
+      break: "",
 
-    // ==== 8.3
-    selection: "Select Time"
-  };
+      // ==== 8.3
+      selection: "Select Time",
+
+      ring: "https://www.thesoundarchive.com/montypython/Newt.wav"
+    };
+  }
+  audio = new Audio(this.props.url);
 
   // ==== 3.1
   componentDidMount() {
@@ -57,7 +65,6 @@ export default class Timer extends Component {
         dateElement.innerHTML = `Be back at ${moment()
           .add(15, "minutes")
           .format("LTS")}`;
-        this.clearCircle(); // FIXME may not need this.
         // ==== 7.6
         // create and call changeTimeMinute()
         this.changeFifteenMinute();
@@ -126,7 +133,7 @@ export default class Timer extends Component {
   changeFifteenMinute = () => {
     this.setState({
       // google how many seconds are in 15 mintes.
-      seconds: 900 + 1,
+      seconds: 5 + 1,
       // set break to blank since break is not over.
       break: "",
       // set to starting for while the timer is loading
@@ -158,24 +165,6 @@ export default class Timer extends Component {
     });
   };
 
-  // customizeIt() {
-  //   var selectAge = document.getElementById("custom");
-  //   var contents = "";
-
-  //   for (let i = 1; i <= 100; i++) {
-  //     contents += "<option>" + i + "</option>";
-  //   }
-
-  //   return (selectAge.innerHTML = contents);
-  // }
-
-  // FIXME may not need this.
-  clearCircle = () => {
-    this.setState({
-      pauseTxt: ""
-    });
-  };
-
   // ==== 11.0
   // You can have the program auto reset after breakOver has been trigered.
   reloader = () => {
@@ -203,7 +192,6 @@ export default class Timer extends Component {
     sound.volume = 0.5;
     // then use the play function for sound.
     sound.play();
-
     // ==== 6.9
     // set state
     this.setState({
@@ -221,6 +209,61 @@ export default class Timer extends Component {
     // ==== 11.1
     // call reloader
     this.reloader();
+  };
+
+  onTrackChange = source => {
+    this.setState({ ring: source }, function() {
+      this.refs.audio.pause();
+      this.refs.audio.load();
+      this.refs.audio.play();
+    });
+  };
+
+  onChange = event => {
+    // TODO
+    // try just setting the state to the path of the mp3 and wav files
+    // this.setState({
+    //   ring: event.target.value
+    // });
+    const sound = document.getElementsByClassName("audio-element")[0];
+
+    if (event.target.value === "whistle") {
+      this.setState({ ring: Whistle }, function() {
+        sound.pause();
+        sound.load();
+      });
+    } else if (event.target.value === "train") {
+      this.setState({ ring: Train }, function() {
+        sound.pause();
+        sound.load();
+      });
+    } else if (event.target.value === "piano") {
+      this.setState(
+        { ring: "https://www.kozco.com/tech/piano2.wav" },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "tina") {
+      this.setState(
+        { ring: "https://www.thesoundarchive.com/nd/nap-eeatthefood.wav" },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "mighty-python") {
+      this.setState(
+        { ring: "https://www.thesoundarchive.com/montypython/Newt.wav" },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else {
+      console.log("not found");
+    }
   };
 
   // ==== 3.0
@@ -281,12 +324,10 @@ export default class Timer extends Component {
             {/* create selection and set the state in changeTime functions */}
             <p className="selection">{this.state.selection}</p>
             {/* ==== 8.0 */}
-
             {/* ==== 6.11 */}
             <div id="dateComponent" className="be-back" />
             <p className="break-over">{this.state.break}</p>
             {/* ==== 6.11 */}
-
             {/* 7.2 */}
             {/* create container button-container */}
             <div className="button-container">
@@ -294,7 +335,16 @@ export default class Timer extends Component {
 
               <button id="fifteenBtn">15 min</button>
             </div>
-
+            <select onChange={this.onChange}>
+              <option value="mighty-python">Mighty Python</option>
+              <option value="whistle">Death Whistle</option>
+              <option value="train">Train Crossing</option>
+              <option value="piano">Piano</option>
+              <option value="tina">Tina</option>
+            </select>
+            <audio className="audio-element">
+              <source src={this.state.ring} />
+            </audio>
             {/* <select id="custom">{this.customizeIt}</select> */}
             {/* 7.2 */}
           </div>
@@ -323,13 +373,11 @@ export default class Timer extends Component {
               {/* 10.0 */}
               {/* Now we can set our audio for when the timer hits onComplete. */}
               {/* it doesn't matter too much where you put this audio because you can't see it */}
-              <audio className="audio-element">
-                <source src={Whistle} />
-              </audio>
-              {/* 10.0 */}
+
+              {/* 10.0*/}
+              {/* 9.0 */}
             </div>
           </div>
-          {/* 9.0 */}
         </div>
       </div>
     );
