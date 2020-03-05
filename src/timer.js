@@ -189,7 +189,7 @@ export default class Timer extends Component {
     // grab the first element of it which is [0]
     const sound = document.getElementsByClassName("audio-element")[0];
     // set the volume out of 1.0
-    sound.volume = 0.5;
+    sound.volume = 0.3;
     // then use the play function for sound.
     sound.play();
     // ==== 6.9
