@@ -37,7 +37,7 @@ export default class Timer extends Component {
       // ==== 8.3
       selection: "Select Time",
 
-      ring: "https://www.thesoundarchive.com/montypython/Newt.wav"
+      ring: "https://www.thesoundarchive.com/email/Game-Show-Buzzer.wav"
     };
   }
   audio = new Audio(this.props.url);
@@ -171,7 +171,7 @@ export default class Timer extends Component {
     // set a timeout function and set the time at the end of it.
     setTimeout(function() {
       window.location.reload(true);
-    }, 7500);
+    }, 10000);
   };
 
   // ==== 9.7
@@ -211,14 +211,6 @@ export default class Timer extends Component {
     this.reloader();
   };
 
-  onTrackChange = source => {
-    this.setState({ ring: source }, function() {
-      this.refs.audio.pause();
-      this.refs.audio.load();
-      this.refs.audio.play();
-    });
-  };
-
   onChange = event => {
     // TODO
     // try just setting the state to the path of the mp3 and wav files
@@ -232,6 +224,37 @@ export default class Timer extends Component {
         sound.pause();
         sound.load();
       });
+    } else if (event.target.value === "monty-python") {
+      this.setState(
+        {
+          ring: "https://www.thesoundarchive.com/montypython/Newt.wav"
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "final-countdown") {
+      this.setState(
+        {
+          ring:
+            "https://www.thesoundarchive.com/ringtones/AD-FinalCountdown_pt2.wav"
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "buzzer") {
+      this.setState(
+        {
+          ring: "https://www.thesoundarchive.com/email/Game-Show-Buzzer.wav"
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
     } else if (event.target.value === "train") {
       this.setState({ ring: Train }, function() {
         sound.pause();
@@ -253,9 +276,9 @@ export default class Timer extends Component {
           sound.load();
         }
       );
-    } else if (event.target.value === "mighty-python") {
+    } else if (event.target.value === "austin-powers") {
       this.setState(
-        { ring: "https://www.thesoundarchive.com/montypython/Newt.wav" },
+        { ring: "https://www.thesoundarchive.com/austinpowers/yababy.wav" },
         function() {
           sound.pause();
           sound.load();
@@ -336,8 +359,11 @@ export default class Timer extends Component {
               <button id="fifteenBtn">15 min</button>
             </div>
             <select onChange={this.onChange}>
-              <option value="mighty-python">Mighty Python</option>
+              <option value="buzzer">Buzzer</option>
+              <option value="monty-python">Monty Python</option>
+              <option value="final-countdown">Final Countdown</option>
               <option value="whistle">Death Whistle</option>
+              <option value="austin-powers">Austin Powers</option>
               <option value="train">Train Crossing</option>
               <option value="piano">Piano</option>
               <option value="tina">Tina</option>
@@ -345,6 +371,7 @@ export default class Timer extends Component {
             <audio className="audio-element">
               <source src={this.state.ring} />
             </audio>
+
             {/* <select id="custom">{this.customizeIt}</select> */}
             {/* 7.2 */}
           </div>
