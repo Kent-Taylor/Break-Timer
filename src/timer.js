@@ -5,6 +5,7 @@ import ReactCountdownClock from "react-countdown-clock";
 import moment from "moment";
 import Whistle from "./sounds/Aztec-Death-Whistle.wav";
 import Train from "./sounds/train-crossing.mp3";
+import R2 from "./sounds/r2.mp3";
 // ==== 1.0
 
 // ==== 2.0
@@ -219,6 +220,12 @@ export default class Timer extends Component {
     // });
     const sound = document.getElementsByClassName("audio-element")[0];
 
+    // if (event.target.value) {
+    //   console.log("They match! Whoot", event.target.label);
+    // } else {
+    //   console.log("Not found.");
+    // }
+
     if (event.target.value === "whistle") {
       this.setState({ ring: Whistle }, function() {
         sound.pause();
@@ -228,6 +235,16 @@ export default class Timer extends Component {
       this.setState(
         {
           ring: "https://www.thesoundarchive.com/montypython/Newt.wav"
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "r2") {
+      this.setState(
+        {
+          ring: R2
         },
         function() {
           sound.pause();
@@ -329,7 +346,7 @@ export default class Timer extends Component {
             color="#FF9F1C"
             alpha={0.9}
             size={200}
-            weight={10}
+            weight={5}
             // ==== 6.13
             // set whether timer has milisoconds when down to 10 seconds and lower
             showMilliseconds={false}
@@ -361,6 +378,7 @@ export default class Timer extends Component {
             <select onChange={this.onChange}>
               <option value="buzzer">Buzzer</option>
               <option value="monty-python">Monty Python</option>
+              <option value="r2">R2-D2</option>
               <option value="final-countdown">Final Countdown</option>
               <option value="whistle">Death Whistle</option>
               <option value="austin-powers">Austin Powers</option>
