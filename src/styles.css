@@ -96,12 +96,13 @@ select {
   text-decoration: none;
   outline: none;
   margin: 10px;
+  margin-bottom: 0px;
 }
 
 .control-panel {
   display: flex;
   justify-content: center;
-  margin-top: 42px;
+  margin-top: 25px;
 }
 
 .controls {
