@@ -6,6 +6,7 @@ import moment from "moment";
 import Whistle from "./sounds/Aztec-Death-Whistle.wav";
 import Train from "./sounds/train-crossing.mp3";
 import R2 from "./sounds/r2.mp3";
+import Eric from "./sounds/Eric-Andre.mp3";
 // ==== 1.0
 
 // ==== 2.0
@@ -292,6 +293,11 @@ export default class Timer extends Component {
           sound.load();
         }
       );
+    } else if (event.target.value === "eric") {
+      this.setState({ ring: Eric }, function() {
+        sound.pause();
+        sound.load();
+      });
     } else if (event.target.value === "austin-powers") {
       this.setState(
         { ring: "https://www.thesoundarchive.com/austinpowers/yababy.wav" },
@@ -378,6 +384,7 @@ export default class Timer extends Component {
               <option value="buzzer">Buzzer</option>
               <option value="austin-powers">Austin Powers</option>
               <option value="whistle">Death Whistle</option>
+              <option value="eric">Eric Andre</option>
               <option value="final-countdown">Final Countdown</option>
               <option value="monty-python">Monty Python</option>
               <option value="piano">Piano</option>
