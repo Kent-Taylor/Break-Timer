@@ -1,7 +1,7 @@
 import React from "react";
 import Timer from "./timer.js";
 import Footer from "./footer";
-import Notification from "./notification";
+// import Notification from "./notification";
 
 import "./styles.css";
 

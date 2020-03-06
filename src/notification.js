@@ -1,25 +1,22 @@
 import React, { Component } from "react";
 
 export default class Notification extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ignore: "bool",
-      disableActiveWindow: "bool",
-      askAgain: "bool",
-      notSupported: "func",
-      onPermissionGranted: "func",
-      onPermissionDenied: "func",
-      onShow: "func",
-      onClick: "func",
-      onClose: "func",
-      onError: "func",
-      timeout: "number",
-      title: "Break is coming up!",
-      options: "object",
-      swRegistration: "object"
-    };
-  }
+  // params for Notification:
+
+  // ignore: "bool",
+  // disableActiveWindow: "bool",
+  // askAgain: "bool",
+  // notSupported: "func",
+  // onPermissionGranted: "func",
+  // onPermissionDenied: "func",
+  // onShow: "func",
+  // onClick: "func",
+  // onClose: "func",
+  // onError: "func",
+  // timeout: "number",
+  // title: "Break is coming up!",
+  // options: "object",
+  // swRegistration: "object"
 
   componentDidMount = () => {
     window.Notification.requestPermission();
@@ -27,8 +24,8 @@ export default class Notification extends Component {
 
   pawnNotification = (theBody, theIcon, theTitle) => {
     var options = {
-      body: theBody,
-      icon: theIcon
+      body: "The body of the text",
+      icon: "theIcon"
     };
     var n = new Notification(theTitle, options);
     console.log(n);
@@ -55,28 +52,11 @@ export default class Notification extends Component {
 
   testNotify = () => {
     console.log("Pressed");
-    this.setState({
-      ignore: "bool",
-      disableActiveWindow: "bool",
-      askAgain: "bool",
-      notSupported: "func",
-      onPermissionGranted: "func",
-      onPermissionDenied: "func",
-      onShow: "func",
-      onClick: "func",
-      onClose: "func",
-      onError: "func",
-      timeout: "number",
-      title: "string.isRequired",
-      options: "object",
-      swRegistration: "object"
-    });
   };
 
   render() {
     return (
       <div>
-        <h1>Hello</h1>
         <button onClick={this.notifyMe}>Notify</button>
       </div>
     );

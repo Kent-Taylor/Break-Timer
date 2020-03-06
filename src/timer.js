@@ -87,7 +87,6 @@ export default class Timer extends Component {
         dateElement.innerHTML = `Be back at ${moment()
           .add(1, "hours")
           .format("LTS")}`;
-        this.clearCircle(); // FIXME may not need this.
         // ==== 7.10
         // define and call changeTimeHour
         this.changeTimeHour();
