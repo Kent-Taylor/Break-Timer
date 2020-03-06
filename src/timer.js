@@ -377,13 +377,13 @@ export default class Timer extends Component {
             </div>
             <select onChange={this.onChange}>
               <option value="buzzer">Buzzer</option>
-              <option value="monty-python">Monty Python</option>
-              <option value="r2">R2-D2</option>
-              <option value="final-countdown">Final Countdown</option>
-              <option value="whistle">Death Whistle</option>
               <option value="austin-powers">Austin Powers</option>
-              <option value="train">Train Crossing</option>
+              <option value="whistle">Death Whistle</option>
+              <option value="final-countdown">Final Countdown</option>
+              <option value="monty-python">Monty Python</option>
               <option value="piano">Piano</option>
+              <option value="r2">R2-D2</option>
+              <option value="train">Train Crossing</option>
               <option value="tina">Tina</option>
             </select>
             <audio className="audio-element">
