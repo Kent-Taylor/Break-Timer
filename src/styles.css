@@ -104,6 +104,8 @@ select {
   border: 2px solid red;
   color: white;
   font-size: 2em;
+  border-radius: 30px;
+  outline: none;
   animation: stop-glow 1s infinite;
   animation-timing-function: ease-out;
   animation-delay: 0;

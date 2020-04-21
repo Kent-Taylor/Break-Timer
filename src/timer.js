@@ -176,7 +176,7 @@ export default class Timer extends Component {
     // set a timeout function and set the time at the end of it.
     setTimeout(function() {
       window.location.reload(true);
-    }, 15000);
+    }, 30000);
   };
 
   // ==== 9.7
