@@ -7,6 +7,8 @@ import Whistle from "./sounds/Aztec-Death-Whistle.wav";
 import Train from "./sounds/train-crossing.mp3";
 import R2 from "./sounds/r2.mp3";
 import Eric from "./sounds/Eric-Andre.mp3";
+import Siren from "./sounds/tornatosiren.mp3";
+import Police from "./sounds/police.mp3";
 
 // ==== 1.0
 
@@ -252,6 +254,16 @@ export default class Timer extends Component {
           sound.load();
         }
       );
+    } else if (event.target.value === "siren") {
+      this.setState(
+        {
+          ring: Siren
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
     } else if (event.target.value === "final-countdown") {
       this.setState(
         {
@@ -294,6 +306,11 @@ export default class Timer extends Component {
           sound.load();
         }
       );
+    } else if (event.target.value === "police") {
+      this.setState({ ring: Police }, function() {
+        sound.pause();
+        sound.load();
+      });
     } else if (event.target.value === "eric") {
       this.setState({ ring: Eric }, function() {
         sound.pause();
@@ -383,6 +400,8 @@ export default class Timer extends Component {
             </div>
             <select onChange={this.onChange}>
               <option value="buzzer">Buzzer</option>
+              <option value="siren">COVID-19</option>
+              <option value="police">Police</option>
               <option value="austin-powers">Austin Powers</option>
               <option value="whistle">Death Whistle</option>
               <option value="eric">Eric Andre</option>
