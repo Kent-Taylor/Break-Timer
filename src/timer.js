@@ -9,6 +9,7 @@ import R2 from "./sounds/r2.mp3";
 import Eric from "./sounds/Eric-Andre.mp3";
 import Siren from "./sounds/tornatosiren.mp3";
 import Police from "./sounds/police.mp3";
+import Metal from "./sounds/heavyMetal.m4a";
 
 // ==== 1.0
 
@@ -175,7 +176,7 @@ export default class Timer extends Component {
     // set a timeout function and set the time at the end of it.
     setTimeout(function() {
       window.location.reload(true);
-    }, 10000);
+    }, 15000);
   };
 
   // ==== 9.7
@@ -258,6 +259,16 @@ export default class Timer extends Component {
       this.setState(
         {
           ring: Siren
+        },
+        function() {
+          sound.pause();
+          sound.load();
+        }
+      );
+    } else if (event.target.value === "metal") {
+      this.setState(
+        {
+          ring: Metal
         },
         function() {
           sound.pause();
@@ -390,6 +401,14 @@ export default class Timer extends Component {
             {/* ==== 6.11 */}
             <div id="dateComponent" className="be-back" />
             <p className="break-over">{this.state.break}</p>
+            <button
+              className={
+                this.state.break === "Break's Over!" ? "stop" : "hidden"
+              }
+              onClick={this.reset}
+            >
+              Stop Alarm
+            </button>
             {/* ==== 6.11 */}
             {/* 7.2 */}
             {/* create container button-container */}
@@ -400,6 +419,7 @@ export default class Timer extends Component {
             </div>
             <select onChange={this.onChange}>
               <option value="buzzer">Buzzer</option>
+              <option value="metal">Heavy Metal</option>
               <option value="siren">COVID-19</option>
               <option value="police">Police</option>
               <option value="austin-powers">Austin Powers</option>
@@ -412,6 +432,7 @@ export default class Timer extends Component {
               <option value="train">Train Crossing</option>
               <option value="tina">Tina</option>
             </select>
+
             <audio className="audio-element">
               <source src={this.state.ring} />
             </audio>
