@@ -60,6 +60,8 @@ export default class Timer extends Component {
     // define button and get the elements by their id's
     const fifteenBtn = document.getElementById("fifteenBtn");
     const oneHourBtn = document.getElementById("oneHourBtn");
+    const fiveMinBtn = document.getElementById("fiveMinBtn");
+    const thirtyMinBtn = document.getElementById("thirtyMinBtn");
     // ==== 7.3
 
     // ==== 7.4
@@ -74,6 +76,48 @@ export default class Timer extends Component {
         // ==== 7.6
         // create and call changeTimeMinute()
         this.changeFifteenMinute();
+        // ==== 7.6
+
+        // ==== 7.8
+        // set state pause to false so that the timer can start after being changed to 15 mintes.
+        this.setState({
+          pause: false
+        });
+        // ==== 7.8
+      });
+    }
+
+    if (fiveMinBtn) {
+      // ==== 7.5
+      // add event listener that creates HTML of the moment + 15 minutes
+      fiveMinBtn.addEventListener("click", event => {
+        dateElement.innerHTML = `Be back at ${moment()
+          .add(5, "minutes")
+          .format("LTS")}`;
+        // ==== 7.6
+        // create and call changeTimeMinute()
+        this.changeFiveMin();
+        // ==== 7.6
+
+        // ==== 7.8
+        // set state pause to false so that the timer can start after being changed to 15 mintes.
+        this.setState({
+          pause: false
+        });
+        // ==== 7.8
+      });
+    }
+
+    if (thirtyMinBtn) {
+      // ==== 7.5
+      // add event listener that creates HTML of the moment + 15 minutes
+      thirtyMinBtn.addEventListener("click", event => {
+        dateElement.innerHTML = `Be back at ${moment()
+          .add(30, "minutes")
+          .format("LTS")}`;
+        // ==== 7.6
+        // create and call changeTimeMinute()
+        this.changeHalfHour();
         // ==== 7.6
 
         // ==== 7.8
@@ -119,6 +163,37 @@ export default class Timer extends Component {
   // ==== 4.2
 
   // 7.11
+
+  changeFiveMin = () => {
+    this.setState({
+      // google how many seconds are in 1 hour.
+      seconds: 300 + 1,
+      // set break to blank since break is not over.
+      break: "",
+      // set to starting for while the timer is loading
+      pauseTxt: "Starting",
+
+      // ==== 8.1
+      selection: "5 minutes"
+      // ==== 8.1
+    });
+  };
+
+  changeHalfHour = () => {
+    this.setState({
+      // google how many seconds are in 1 hour.
+      seconds: 1800 + 1,
+      // set break to blank since break is not over.
+      break: "",
+      // set to starting for while the timer is loading
+      pauseTxt: "Starting",
+
+      // ==== 8.1
+      selection: "30 minutes"
+      // ==== 8.1
+    });
+  };
+
   changeTimeHour = () => {
     this.setState({
       // google how many seconds are in 1 hour.
@@ -413,9 +488,14 @@ export default class Timer extends Component {
             {/* 7.2 */}
             {/* create container button-container */}
             <div className="button-container">
-              <button id="oneHourBtn">1 hour</button>
-
-              <button id="fifteenBtn">15 min</button>
+              <div className="left-buttons">
+                <button id="oneHourBtn">1 hour</button>
+                <button id="thirtyMinBtn">30 min</button>
+              </div>
+              <div className="right-buttons">
+                <button id="fifteenBtn">15 min</button>
+                <button id="fiveMinBtn">5 min</button>
+              </div>
             </div>
             <select onChange={this.onChange}>
               <option value="buzzer">Buzzer</option>

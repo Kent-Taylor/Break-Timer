@@ -75,7 +75,8 @@ button:active {
   filter: brightness(50%);
 }
 
-.button-container > button {
+.button-container > .right-buttons > button,
+.button-container > .left-buttons > button {
   outline: none;
   background-color: #ff9f1c;
   border: none;
@@ -86,6 +87,16 @@ button:active {
   padding: 5px 15px;
   height: 50px;
   width: 130px;
+}
+
+.right-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-buttons {
+  display: flex;
+  flex-direction: column;
 }
 
 select {
