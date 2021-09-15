@@ -69,8 +69,8 @@ export default class Timer extends Component {
     if (fifteenBtn) {
       // ==== 7.5
       // add event listener that creates HTML of the moment + 15 minutes
-      fifteenBtn.addEventListener("click", event => {
-        dateElement.innerHTML = `Be back at ${moment()
+      fifteenBtn.addEventListener("click", (event) => {
+        dateElement.innerHTML = `Be done by ${moment()
           .add(15, "minutes")
           .format("LTS")}`;
         // ==== 7.6
@@ -90,8 +90,8 @@ export default class Timer extends Component {
     if (fiveMinBtn) {
       // ==== 7.5
       // add event listener that creates HTML of the moment + 15 minutes
-      fiveMinBtn.addEventListener("click", event => {
-        dateElement.innerHTML = `Be back at ${moment()
+      fiveMinBtn.addEventListener("click", (event) => {
+        dateElement.innerHTML = `Be done by ${moment()
           .add(5, "minutes")
           .format("LTS")}`;
         // ==== 7.6
@@ -111,8 +111,8 @@ export default class Timer extends Component {
     if (thirtyMinBtn) {
       // ==== 7.5
       // add event listener that creates HTML of the moment + 15 minutes
-      thirtyMinBtn.addEventListener("click", event => {
-        dateElement.innerHTML = `Be back at ${moment()
+      thirtyMinBtn.addEventListener("click", (event) => {
+        dateElement.innerHTML = `Be done by ${moment()
           .add(30, "minutes")
           .format("LTS")}`;
         // ==== 7.6
@@ -132,8 +132,8 @@ export default class Timer extends Component {
     // ==== 7.9
     // copy and paste and do the same thing for oneHourBtn
     if (oneHourBtn) {
-      oneHourBtn.addEventListener("click", event => {
-        dateElement.innerHTML = `Be back at ${moment()
+      oneHourBtn.addEventListener("click", (event) => {
+        dateElement.innerHTML = `Be done by ${moment()
           .add(1, "hours")
           .format("LTS")}`;
         // ==== 7.10
@@ -249,7 +249,7 @@ export default class Timer extends Component {
   // You can have the program auto reset after breakOver has been trigered.
   reloader = () => {
     // set a timeout function and set the time at the end of it.
-    setTimeout(function() {
+    setTimeout(function () {
       window.location.reload(true);
     }, 30000);
   };
@@ -291,7 +291,7 @@ export default class Timer extends Component {
     this.reloader();
   };
 
-  onChange = event => {
+  onChange = (event) => {
     // TODO
     // try just setting the state to the path of the mp3 and wav files
     // this.setState({
@@ -306,7 +306,7 @@ export default class Timer extends Component {
     // }
 
     if (event.target.value === "whistle") {
-      this.setState({ ring: Whistle }, function() {
+      this.setState({ ring: Whistle }, function () {
         sound.pause();
         sound.load();
       });
@@ -315,7 +315,7 @@ export default class Timer extends Component {
         {
           ring: "https://www.thesoundarchive.com/montypython/Newt.wav"
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -325,7 +325,7 @@ export default class Timer extends Component {
         {
           ring: R2
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -335,7 +335,7 @@ export default class Timer extends Component {
         {
           ring: Siren
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -345,7 +345,7 @@ export default class Timer extends Component {
         {
           ring: Metal
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -356,7 +356,7 @@ export default class Timer extends Component {
           ring:
             "https://www.thesoundarchive.com/ringtones/AD-FinalCountdown_pt2.wav"
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -366,20 +366,20 @@ export default class Timer extends Component {
         {
           ring: "https://www.thesoundarchive.com/email/Game-Show-Buzzer.wav"
         },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
       );
     } else if (event.target.value === "train") {
-      this.setState({ ring: Train }, function() {
+      this.setState({ ring: Train }, function () {
         sound.pause();
         sound.load();
       });
     } else if (event.target.value === "piano") {
       this.setState(
         { ring: "https://www.kozco.com/tech/piano2.wav" },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
@@ -387,25 +387,25 @@ export default class Timer extends Component {
     } else if (event.target.value === "tina") {
       this.setState(
         { ring: "https://www.thesoundarchive.com/nd/nap-eeatthefood.wav" },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
       );
     } else if (event.target.value === "police") {
-      this.setState({ ring: Police }, function() {
+      this.setState({ ring: Police }, function () {
         sound.pause();
         sound.load();
       });
     } else if (event.target.value === "eric") {
-      this.setState({ ring: Eric }, function() {
+      this.setState({ ring: Eric }, function () {
         sound.pause();
         sound.load();
       });
     } else if (event.target.value === "austin-powers") {
       this.setState(
         { ring: "https://www.thesoundarchive.com/austinpowers/yababy.wav" },
-        function() {
+        function () {
           sound.pause();
           sound.load();
         }
